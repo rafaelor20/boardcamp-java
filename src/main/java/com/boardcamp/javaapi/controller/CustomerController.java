@@ -32,4 +32,10 @@ public class CustomerController {
         Customer customer = service.getCustomerById(id);
         return ResponseEntity.status(200).body(customer);
     }
+
+    @PostMapping("/customers")
+    public ResponseEntity<Customer> post(@RequestBody @Valid CustomerDTO dto) {
+        Customer customer = service.createCustomer(dto);
+        return ResponseEntity.status(201).body(customer);
+    }
 }
