@@ -37,7 +37,7 @@ public class Rental {
     private Long gameId;
 
     @Column(nullable = false)
-    private int rentDate;
+    private Date rentDate;
 
     @Column(nullable = false)
     private int daysRented;

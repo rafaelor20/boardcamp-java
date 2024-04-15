@@ -32,8 +32,8 @@ public class Game {
     private String image;
 
     @Column(nullable = false)
-    private Long stockTotal;
+    private int stockTotal;
 
     @Column(nullable = false)
-    private Long pricePerDay;
+    private int pricePerDay;
 }
