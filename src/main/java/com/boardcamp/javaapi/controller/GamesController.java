@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping
@@ -28,12 +26,13 @@ public class GamesController {
     @GetMapping("/games")
     public ResponseEntity<List<Game>> getAll() {
         List<Game> games = service.getAll();
-        return ResponseEntity.status(200).body(games);
+        return ResponseEntity.status(HttpStatus.OK).body(games);
     }
 
     @PostMapping("/games")
-    public Game post(@Valid @RequestBody GameDTO game) {
-        return service.post(game);
+    public ResponseEntity<Game> createGame(@Valid @RequestBody GameDTO game) {
+        Game newGame = service.save(game);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newGame);
     }
 
 }

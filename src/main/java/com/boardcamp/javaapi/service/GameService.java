@@ -42,7 +42,7 @@ public class GameService {
         }
     }
 
-    public Game post(GameDTO game) {
+    public Game save(GameDTO game) {
         checkName(game);
         checkGameStock(game);
         checkGamePrice(game);

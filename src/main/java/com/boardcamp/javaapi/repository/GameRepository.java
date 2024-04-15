@@ -9,8 +9,5 @@ import com.boardcamp.javaapi.model.Game;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-
-    Game save(Game game);
-
     Game findByName(String name);
 }
