@@ -5,12 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.boardcamp.javaapi.model.Game;
+import com.boardcamp.javaapi.model.Customer;
 
 @Repository
-public interface GameRepository extends JpaRepository<Game, Long> {
-
-    Game save(Game game);
-
-    Game findByName(String name);
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findById(int id);
 }

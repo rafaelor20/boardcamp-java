@@ -15,7 +15,38 @@ public class GameService {
 
     private GameRepository repository;
 
-    public List<Game> get() {
+    public List<Game> getAll() {
         return repository.findAll();
+    }
+
+    public void checkName(GameDTO game) {
+        if (game.name() == null || game.name().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+
+        Game gameByName = repository.findByName(game.name());
+        if (gameByName != null) {
+            throw new IllegalArgumentException("Game already exists");
+        }
+    }
+
+    public void checkGameStock(GameDTO game) {
+        if (game.stockTotal() < 0) {
+            throw new IllegalArgumentException("Stock cannot be negative");
+        }
+    }
+
+    public void checkGamePrice(GameDTO game) {
+        if (game.pricePerDay() < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+    }
+
+    public Game post(GameDTO game) {
+        checkName(game);
+        checkGameStock(game);
+        checkGamePrice(game);
+        Game newGame = new Game(game);
+        return repository.save(newGame);
     }
 }
