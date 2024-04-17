@@ -28,13 +28,13 @@ public class CustomerController {
     private CustomerService service;
 
     @GetMapping("/customers/{id}")
-    public ResponseEntity<Customer> get(@PathVariable Long id) {
+    public ResponseEntity<Customer> getById(@PathVariable Long id) {
         Customer customer = service.getCustomerById(id);
         return ResponseEntity.status(200).body(customer);
     }
 
     @PostMapping("/customers")
-    public ResponseEntity<Customer> post(@RequestBody @Valid CustomerDTO dto) {
+    public ResponseEntity<Customer> save(@RequestBody @Valid CustomerDTO dto) {
         Customer customer = service.createCustomer(dto);
         return ResponseEntity.status(201).body(customer);
     }
